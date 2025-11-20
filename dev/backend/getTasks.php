@@ -19,5 +19,6 @@ $parameters = [
 
 $dbResult = \Bitrix\Tasks\Internals\TaskTable::getList($parameters);
 while ($task = $dbResult->fetch()) {
+//    file_put_contents();
     echo "Задача ID: " . $task['ID'] . ", Название: " . $task['TITLE'] . ", Описание: " . $task['DESCRIPTION'] . ", Статус: " . $task['STATUS'] . "\n";
 }

@@ -2,10 +2,15 @@
 require_once __DIR__ . '/config.php';
 require_once __DIR__ . '/helpers/Response.php';
 require_once __DIR__ . '/models/Employee.php';
+require_once __DIR__ . '/models/Task.php';
 require_once __DIR__ . '/controllers/EmployeeController.php';
+require_once __DIR__ . '/controllers/TaskController.php';
+
 
 use Api\Helpers\Response;
 use Api\Controllers\EmployeeController;
+use Api\Controllers\TaskController;
+
 
 $resource = $_GET['resource'] ?? null;
 $id = $_GET['id'] ?? null;
@@ -24,9 +29,15 @@ try {
             }
             break;
 
+
         case 'tasks':
-            Response::success([], 'Задачи пока не реализованы');
+            if ($id) {
+                TaskController::show();
+            } else {
+                TaskController::index();
+            }
             break;
+
 
         case 'reports':
             Response::success([], 'Отчёты пока не реализованы');

@@ -54,16 +54,24 @@ class Employee
             $avatar = $file ? $_SERVER['HTTP_HOST'] . $file : null;
         }
 
+        /**
+         * Подсчёт задач
+         */
+        $tasksCount = Task::getCountByUserId($user['ID']);
+
+
         return [
             'id' => (int)$user['ID'],
             'name' => trim($user['NAME'] . ' ' . $user['LAST_NAME'] . ' ' . $user['SECOND_NAME']),
             'email' => $user['EMAIL'],
             'position' => $user['WORK_POSITION'] ?? 'Сотрудник',
-            'avatar' => $avatar /*?: 'https://i.pravatar.cc/150?img=' . $user['ID']*/,
-            'tasksCount' => 0, // TODO: реальный подсчёт
+            'avatar' => $avatar,
+            'tasksCount' => $tasksCount,
+            /*
             'reportsCount' => 0, // TODO: реальный подсчёт
             'completionRate' => 0, // TODO: реальный подсчёт
             'testRate' => 1000000000,
+            */
         ];
     }
 }

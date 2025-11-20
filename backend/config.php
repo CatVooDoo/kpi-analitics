@@ -16,11 +16,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
 }
 
 \Bitrix\Main\Loader::includeModule('main');
+\Bitrix\Main\Loader::includeModule('tasks');
 
 // Проверка авторизации (опционально)
 global $USER;
 if (!$USER->IsAuthorized()) {
-    // http_response_code(401);
-    // echo json_encode(['error' => 'Unauthorized']);
-    // exit();
+     http_response_code(401);
+     echo json_encode(['error' => 'Unauthorized']);
+     exit();
 }

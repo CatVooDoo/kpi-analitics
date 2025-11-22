@@ -88,6 +88,14 @@ class Task
      */
     private static function formatTask($task)
     {
+
+        $deadline = null;
+        if ($task['DEADLINE'] instanceof \Bitrix\Main\Type\DateTime) {
+            $deadline = $task['DEADLINE']->format('Y-m-d H:i:s');
+        } elseif ($task['DEADLINE'] !== null) {
+            $deadline = $task['DEADLINE'];
+        }
+
         return [
             'id' => (int)$task['ID'],
             'title' => $task['TITLE'],

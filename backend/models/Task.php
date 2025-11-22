@@ -89,6 +89,10 @@ class Task
     private static function formatTask($task)
     {
 
+        /**
+         * Форматирование Deadline, приведение к строке
+         */
+
         $deadline = null;
         if ($task['DEADLINE'] instanceof \Bitrix\Main\Type\DateTime) {
             $deadline = $task['DEADLINE']->format('Y-m-d H:i:s');
@@ -99,7 +103,7 @@ class Task
         return [
             'id' => (int)$task['ID'],
             'title' => $task['TITLE'],
-            'deadline' => $task['DEADLINE'],
+            'deadline' => $deadline,
             'status' => $task['STATUS'],
             'description' => $task['DESCRIPTION'],
             'responsibleId' => (int)$task['RESPONSIBLE_ID']
